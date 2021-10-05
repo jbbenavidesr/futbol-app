@@ -6,8 +6,10 @@ name = "pypi"
 [packages]
 django = "~=3.2"
 psycopg2-binary = "~=2.8"
+environs = {version = "~=8.0", extras = ["django"]}
+autopep8 = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"
