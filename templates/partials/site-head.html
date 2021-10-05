@@ -1,0 +1,28 @@
+<a class="visually-hidden focusable" href="#main">Saltar navegación</a>
+
+<header class="padding-top margin-bottom-large">
+    <nav class="container container-small">
+        <div class="nav">
+            <div>
+                <a href="{% url 'home' %}">
+                    <strong class="h1">Fútbol App</strong>
+                </a>
+            </div>
+
+            <ul class="list-inline padding-top">
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">Log out</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">Log In</a>
+                </li>
+                <li>
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
