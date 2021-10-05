@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-	# Local
-	'accounts',
+    # Local
+    'accounts',
+    'pages',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,10 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-		'USER': 'postgres',
-		'PASSWORD': 'postgres',
-		'HOST': 'db',
-		'PORT': 5432
+                'USER': 'postgres',
+                'PASSWORD': 'postgres',
+                'HOST': 'db',
+                'PORT': 5432
     }
 }
 
