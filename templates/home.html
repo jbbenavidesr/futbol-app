@@ -3,5 +3,21 @@
 {% block title %}Página prinicipal{% endblock title %}
 
 {% block content %}
-<h1>Página principal</h1>
+<div class="container">
+    <h2>Canchas</h2>
+    <ul class="list-unstyled row row-gap-large row-auto">
+        {% for cancha in lista_canchas %}
+        <li>
+            <article class="card">
+                <h3 class="card__title">
+                    <a href="{{ cancha.get_absolute_url }}" class="card__link">{{ cancha.nombre }}</a>
+                </h3>
+                <p class="card__price">{{ cancha.precio }}</p>
+                <p class="card__details">{{ cancha.direccion }}</p>
+            </article>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
 {% endblock content %}

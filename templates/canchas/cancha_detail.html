@@ -1,0 +1,15 @@
+{% extends '_base.html' %}
+
+{% block title %}{{ cancha.nombre }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <article class="cancha">
+        <h3 class="cancha__title">{{ cancha.nombre }}</h3>
+        <p class="cancha__price">{{ cancha.precio }}</p>
+        <p class="cancha__address">{{ cancha.direccion }}</p>
+        <p class="cancha__phone">{{ cancha.telefono }}</p>
+        <p class="cancha__description">{{ cancha.description }}</p>
+    </article>
+</div>
+{% endblock content %}
