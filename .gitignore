@@ -1,2 +1,5 @@
 .vscode
-.env
+.env*
+docker-compose-prod.yml
+__pycache__/
+db.sqlite3
