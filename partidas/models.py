@@ -21,3 +21,19 @@ class Partida(models.Model):
 
     def __str__(self):
         return f"Partida {self.id} en {self.cancha.nombre}"
+
+
+class Solicitud(models.Model):
+    partida = models.ForeignKey(
+        Partida,
+        on_delete=models.CASCADE,
+        related_name='solicitudes'
+    )
+
+    usuario = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name='solicitudes'
+    )
+
+    is_accepted = models.BooleanField(default=False)
