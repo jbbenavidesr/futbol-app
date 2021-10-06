@@ -9,6 +9,7 @@
         {% for cancha in lista_canchas %}
         <li>
             <article class="card">
+                <p class="card__bubble">{{ cancha.partidas.all | length }}</p>
                 <h3 class="card__title">
                     <a href="{{ cancha.get_absolute_url }}" class="card__link">{{ cancha.nombre }}</a>
                 </h3>
