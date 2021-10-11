@@ -19,4 +19,21 @@
         </div>
     </article>
 </section>
+<section>
+    <div class="container">
+        <h2>Interesados: {{ partida.solicitudes.all |length}}</h2>
+        <ul class="list-unstyled row">
+            {% for solicitud in partida.solicitudes.all %}
+            <li class="col">
+                <article class="card">
+                    <header class="card-header">
+                        <h3>{{ solicitud.usuario }}</h3>
+                    </header>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
 {% endblock content %}
