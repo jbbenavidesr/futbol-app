@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% load humanize %}
+
+{% block title %}{{ cancha.nombre }}{% endblock title %}
+
+{% block content %}
+<section class="mb-5">
+    <article class="card position-relative">
+        <header class="card-header">
+            <h1 class="card-title">
+                Partida #{{ partida.id }}
+            </h1>
+            <p class="card-subtitle fs-4 text-muted">{{ partida.cuando|date:"l j \d\e F P" }}</p>
+            <p class="card-text">{{ partida.cancha }}</p>
+        </header>
+        <div class="card-body p-5">
+            <p class="fs-3">{{ partida.cupos }} cupos...</p>
+            <p class="card-text">{{ partida.mensaje }}</p>
+        </div>
+    </article>
+</section>
+{% endblock content %}

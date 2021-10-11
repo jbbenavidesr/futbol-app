@@ -1,9 +1,15 @@
-from django.db import models
 from django.http.response import HttpResponseRedirect
+from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 
 from .models import Partida
 from .forms import PartidaCreateForm
+
+
+class PartidaDetailView(DetailView):
+    model = Partida
+    template_name = "partidas/partida_detail.html"
+    context_object_name = "partida"
 
 
 class PartidaCreateView(CreateView):

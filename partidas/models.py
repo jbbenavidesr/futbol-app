@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 from canchas.models import Cancha
 
@@ -21,6 +22,9 @@ class Partida(models.Model):
 
     def __str__(self):
         return f"Partida {self.id} en {self.cancha.nombre}"
+
+    def get_absolute_url(self):
+        return reverse('detail_partida', args=[str(self.id)])
 
 
 class Solicitud(models.Model):
