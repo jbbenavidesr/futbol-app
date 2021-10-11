@@ -42,8 +42,9 @@
                     </h3>
                     <p class="card-subtitle  mb-2 text-muted">${{ cancha.precio|intcomma }}</p>
                     <p class="card-text">{{ cancha.direccion }}</p>
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-between">
                         <a href="{{ cancha.get_absolute_url }}" class="btn btn-primary">Ver Partidas</a>
+                        <a href="{% url 'crear_partida_en_cancha' cancha.id %}" class="btn btn-primary">Crear Partida</a>
                     </div>
                 </div>
             </article>
