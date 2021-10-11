@@ -23,6 +23,7 @@
 <section>
     <div class="container">
         <h2>Partidas Abiertas</h2>
+        <a href="{% url 'crear_partida_en_cancha' cancha.id %}" class="btn btn-primary mb-4">Crear Partida</a>
         <ul class="list-unstyled row">
             {% for partida in cancha.partidas.all %}
             <li class="col">
