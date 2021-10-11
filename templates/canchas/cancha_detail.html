@@ -1,26 +1,42 @@
 {% extends '_base.html' %}
+{% load humanize %}
 
 {% block title %}{{ cancha.nombre }}{% endblock title %}
 
 {% block content %}
-<section>
-    <div class="container">
-        <article class="cancha">
-            <h1 class="cancha__title">{{ cancha.nombre }}</h1>
-            <p class="cancha__price">{{ cancha.precio }}</p>
-            <p class="cancha__address">{{ cancha.direccion }}</p>
-            <p class="cancha__phone">{{ cancha.telefono }}</p>
-            <p class="cancha__description">{{ cancha.description }}</p>
-        </article>
-    </div>
+<section class="mb-5">
+    <article class="card position-relative">
+        <header class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="card-title">
+                    {{ cancha.nombre }}
+                </h1>
+                <p class="card-subtitle  mb-2 text-muted">${{ cancha.precio|intcomma }}</p>
+            </div>
+            <p class="card-text">{{ cancha.direccion }}</p>
+        </header>
+        <div class="card-body p-5">
+            <p class="card-text">{{ cancha.descripcion }}</p>
+        </div>
+    </article>
 </section>
 <section>
     <div class="container">
         <h2>Partidas Abiertas</h2>
-        <ul class="list-unstyled row row-gap-large row-auto">
+        <ul class="list-unstyled row">
             {% for partida in cancha.partidas.all %}
-            <li>
-                {{ partida.mensaje }}
+            <li class="col">
+                <article class="card">
+                    <header class="card-header">
+                        <p class="fs-3">
+                            <span class="fs-1">{{ partida.cupos }}</span> cupos...
+                        </p>
+                    </header>
+                    <div class="card-body">
+                        <h3 class="card-title fs-5">{{ partida.cuando|date:"l j \d\e F P" }}</h3>
+                        <p class="card-subtitle text-muted">{{ partida.creado_por }}</p>
+                    </div>
+                </article>
             </li>
             {% endfor %}
         </ul>

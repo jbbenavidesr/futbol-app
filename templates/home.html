@@ -1,19 +1,25 @@
 {% extends '_base.html' %}
+{% load humanize %}
 
 {% block title %}Página prinicipal{% endblock title %}
 
 {% block content %}
 <h2>Canchas</h2>
-<ul class="list-unstyled row row-gap-large row-auto">
+<ul class="row list-unstyled">
     {% for cancha in lista_canchas %}
-    <li>
-        <article class="card">
-            <p class="card__bubble">{{ cancha.partidas.all | length }}</p>
-            <h3 class="card__title">
-                <a href="{{ cancha.get_absolute_url }}" class="card__link">{{ cancha.nombre }}</a>
-            </h3>
-            <p class="card__price">{{ cancha.precio }}</p>
-            <p class="card__details">{{ cancha.direccion }}</p>
+    <li class="col">
+        <article class="card position-relative">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">{{ cancha.partidas.all | length }}</span>
+            <div class="card-body">
+                <h3 class="card-title">
+                    {{ cancha.nombre }}
+                </h3>
+                <p class="card-subtitle  mb-2 text-muted">${{ cancha.precio|intcomma }}</p>
+                <p class="card-text">{{ cancha.direccion }}</p>
+                <div class="d-flex">
+                    <a href="{{ cancha.get_absolute_url }}" class="btn btn-primary">Ver Partidas</a>
+                </div>
+            </div>
         </article>
     </li>
     {% endfor %}
