@@ -4,25 +4,48 @@
 {% block title %}Página prinicipal{% endblock title %}
 
 {% block content %}
-<h2>Canchas</h2>
-<ul class="row list-unstyled">
-    {% for cancha in lista_canchas %}
-    <li class="col">
-        <article class="card position-relative">
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">{{ cancha.partidas.all | length }}</span>
-            <div class="card-body">
-                <h3 class="card-title">
-                    {{ cancha.nombre }}
-                </h3>
-                <p class="card-subtitle  mb-2 text-muted">${{ cancha.precio|intcomma }}</p>
-                <p class="card-text">{{ cancha.direccion }}</p>
-                <div class="d-flex">
-                    <a href="{{ cancha.get_absolute_url }}" class="btn btn-primary">Ver Partidas</a>
+{% if user.is_authenticated %}
+<section>
+    <h2>Mis Partidas Abiertas...</h2>
+    <ul class="list-unstyled row">
+        {% for partida in user.partidas.all %}
+        <li class="col">
+            <article class="card">
+                <header class="card-header">
+                    <p class="fs-3">
+                        <span class="fs-1">{{ partida.solicitudes.all |length }}</span> solicitudes...
+                    </p>
+                </header>
+                <div class="card-body">
+                    <h3 class="card-title fs-5">{{ partida.cuando|date:"l j \d\e F P" }}</h3>
+                    <p class="card-text">{{ partida.cancha }}</p>
                 </div>
-            </div>
-        </article>
-    </li>
-    {% endfor %}
-</ul>
-
+            </article>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+<section>
+    <h2>Canchas</h2>
+    <ul class="row list-unstyled">
+        {% for cancha in lista_canchas %}
+        <li class="col">
+            <article class="card position-relative">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">{{ cancha.partidas.all | length }}</span>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        {{ cancha.nombre }}
+                    </h3>
+                    <p class="card-subtitle  mb-2 text-muted">${{ cancha.precio|intcomma }}</p>
+                    <p class="card-text">{{ cancha.direccion }}</p>
+                    <div class="d-flex">
+                        <a href="{{ cancha.get_absolute_url }}" class="btn btn-primary">Ver Partidas</a>
+                    </div>
+                </div>
+            </article>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock content %}
