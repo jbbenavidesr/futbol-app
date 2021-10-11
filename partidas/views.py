@@ -32,15 +32,7 @@ class PartidaEnCanchaCreateView(CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.creado_por = self.request.user
+        cancha = Cancha.objects.get(id=self.kwargs['cancha'])
+        self.object.cancha = cancha
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
-
-    def get_form_kwargs(self, *args, **kwargs):
-        kwargs = super(PartidaEnCanchaCreateView,
-                       self).get_form_kwargs(*args, **kwargs)
-
-        cancha = Cancha.objects.filter(id=self.kwargs['cancha'])
-
-        kwargs['cancha'] = cancha
-
-        return kwargs

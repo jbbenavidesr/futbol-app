@@ -18,7 +18,3 @@ class PartidaEnCanchaCreateForm(forms.ModelForm):
     class Meta:
         model = Partida
         exclude = ('creado_por', 'cancha')
-
-    def __init__(self, *args, **kwargs):
-        self.cancha = kwargs.pop('cancha')
-        super(PartidaEnCanchaCreateForm, self).__init__(*args, **kwargs)
