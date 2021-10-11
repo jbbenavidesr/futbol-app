@@ -23,6 +23,7 @@
                     <h3 class="card-title fs-5">{{ partida.cuando|date:"l j \d\e F P" }}</h3>
                     <p class="card-text">{{ partida.cancha }}</p>
                 </div>
+                <a href="{{ partida.get_absolute_url }}" class="btn btn-primary">Ver Partida</a>
             </article>
         </li>
         {% endfor %}
