@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
+    # Third Party
+    'crispy_forms',
+
     # Local
     'accounts',
     'pages',
@@ -145,3 +148,6 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # Registration Settings
 LOGIN_REDIRECT_URL = 'lista_canchas'
 LOGOUT_REDIRECT_URL = 'lista_canchas'
+
+# Forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

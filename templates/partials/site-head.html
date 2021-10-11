@@ -1,28 +1,26 @@
-<a class="visually-hidden focusable" href="#main">Saltar navegación</a>
-
-<header class="padding-top margin-bottom-large">
-    <nav class="container container-small">
-        <div class="nav">
-            <div>
-                <a href="{% url 'lista_canchas' %}">
-                    <strong class="h1">Fútbol App</strong>
-                </a>
+<header>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'lista_canchas' %}">Fut4All</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
-
-            <ul class="list-inline padding-top">
-                {% if user.is_authenticated %}
-                <li>
-                    <a href="{% url 'logout' %}">Log out</a>
-                </li>
-                {% else %}
-                <li>
-                    <a href="{% url 'login' %}">Log In</a>
-                </li>
-                <li>
-                    <a href="{% url 'signup' %}">Sign Up</a>
-                </li>
-                {% endif %}
-            </ul>
         </div>
     </nav>
 </header>
