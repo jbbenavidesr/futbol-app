@@ -25,5 +25,6 @@ urlpatterns = [
 
     # Local apps
     path('accounts/', include('accounts.urls')),
+    path('partidas/', include('partidas.urls')),
     path('', include('canchas.urls')),
 ]

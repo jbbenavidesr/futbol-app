@@ -7,6 +7,9 @@
 {% if user.is_authenticated %}
 <section>
     <h2>Mis Partidas Abiertas...</h2>
+    <a href="{% url 'crear_partida' %}" class="btn btn-lg btn-outline-success mb-4">
+        Crear Partida Nueva
+    </a>
     <ul class="list-unstyled row">
         {% for partida in user.partidas.all %}
         <li class="col">
