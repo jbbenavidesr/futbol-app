@@ -4,42 +4,53 @@
 {% block title %}{{ cancha.nombre }}{% endblock title %}
 
 {% block content %}
-<section class="mb-5">
-    <article class="card position-relative">
-        <header class="card-header">
-            <div class="d-flex justify-content-between align-items-center">
-                <h1 class="card-title">
-                    {{ cancha.nombre }}
-                </h1>
-                <p class="card-subtitle  mb-2 text-muted">${{ cancha.precio|intcomma }}</p>
+<!-- Product section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+            <div class="col-md-6">
+                <div class="small mb-1">{{ cancha.direccion }}</div>
+                <h1 class="display-5 fw-bolder">{{ cancha.nombre }}</h1>
+                <div class="fs-5 mb-5">
+                    <span>${{ cancha.precio|intcomma }}</span>
+                </div>
+                <p class="lead">{{ cancha.descripcion }}</p>
+                <div class="d-flex">
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                        Crear Partida
+                    </button>
+                </div>
             </div>
-            <p class="card-text">{{ cancha.direccion }}</p>
-        </header>
-        <div class="card-body p-5">
-            <p class="card-text">{{ cancha.descripcion }}</p>
         </div>
-    </article>
+    </div>
 </section>
-<section>
-    <div class="container">
-        <h2>Partidas Abiertas</h2>
-        <a href="{% url 'crear_partida_en_cancha' cancha.id %}" class="btn btn-primary mb-4">Crear Partida</a>
+
+<section class="py-4 bg-light">
+    <div class="container px-4 px-lg-5">
+        <h2 class="fw-bolder mb-4">Partidas...</h2>
         <ul class="list-unstyled row">
             {% for partida in cancha.partidas.all %}
-            <li class="col">
-                <article class="card">
-                    <header class="card-header">
-                        <p class="fs-3">
-                            <span class="fs-1">{{ partida.cupos }}</span> cupos...
-                        </p>
-                    </header>
-                    <div class="card-body">
-                        <h3 class="card-title fs-5">{{ partida.cuando|date:"l j \d\e F P" }}</h3>
-                        <p class="card-subtitle text-muted">{{ partida.creado_por }}</p>
-                        <a href="#" class="btn btn-primary">Solicitar Unirse</a>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <p class="fs-3">
+                                <span class="fs-1">{{ partida.solicitudes.all |length }}</span> solicitudes...
+                            </p>
+                            <h3 class="card-title fs-5">{{ partida.cuando|date:"l j \d\e F P" }}</h3>
+                            <!-- Product price-->
+                            <p class="card-text">{{ partida.cancha }}</p>
+                        </div>
                     </div>
-                </article>
-            </li>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ partida.get_absolute_url }}">Ver Partida</a></div>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
         </ul>
     </div>

@@ -4,36 +4,41 @@
 {% block title %}{{ cancha.nombre }}{% endblock title %}
 
 {% block content %}
-<section class="mb-5">
-    <article class="card position-relative">
-        <header class="card-header">
-            <h1 class="card-title">
-                Partida #{{ partida.id }}
-            </h1>
-            <p class="card-subtitle fs-4 text-muted">{{ partida.cuando|date:"l j \d\e F P" }}</p>
-            <p class="card-text">{{ partida.cancha }}</p>
-        </header>
-        <div class="card-body p-5">
-            <p class="fs-3">{{ partida.cupos }} cupos...</p>
-            <p class="card-text">{{ partida.mensaje }}</p>
+<!-- Product section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-strech">
+            <div class="col-md-6">
+                <div class="small mb-1">{{ partida.cupos }} cupos</div>
+                <h1 class="display-5 fw-bolder">
+                    Partida #{{ partida.id }}
+                </h1>
+                <div class="fs-5 mb-5">
+                    <span>{{ partida.cuando|date:"l j \d\e F P" }}</span>
+                </div>
+                <p class="lead">{{ cancha.mensaje }}</p>
+                <div class="d-flex">
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button">Solicitar Unirse</button>
+                </div>
+            </div>
+            <div class="col-md-6 card p-3">
+                <h2>Interesados: {{ partida.solicitudes.all |length}}</h2>
+                <ul class="list-unstyled ">
+                    {% for solicitud in partida.solicitudes.all %}
+                    <li class="">
+                        <article class="card">
+                            <header class="card-header">
+                                <h3>{{ solicitud.usuario }}</h3>
+                            </header>
+                        </article>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-    </article>
-</section>
-<section>
-    <div class="container">
-        <h2>Interesados: {{ partida.solicitudes.all |length}}</h2>
-        <ul class="list-unstyled row">
-            {% for solicitud in partida.solicitudes.all %}
-            <li class="col">
-                <article class="card">
-                    <header class="card-header">
-                        <h3>{{ solicitud.usuario }}</h3>
-                    </header>
-                </article>
-            </li>
-            {% endfor %}
-        </ul>
     </div>
 </section>
+
+
 
 {% endblock content %}

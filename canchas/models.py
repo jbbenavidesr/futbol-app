@@ -1,3 +1,5 @@
+import random
+
 from django.db import models
 from django.urls import reverse
 
@@ -19,3 +21,6 @@ class Cancha(models.Model):
 
     def get_absolute_url(self):
         return reverse('detalle_cancha', args=[str(self.id)])
+
+    def rating(self):
+        return range(random.randint(0, 5))

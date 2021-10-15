@@ -5,13 +5,16 @@
 {% block title %}Crear Nueva Partida{% endblock title %}
 
 {% block content %}
-<h1>Crear Partida</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form | crispy }}
-    <button class="btn btn-success">Crear Partida</button>
-</form>
-
+<section class="py-5 bg-light">
+    <div class="container-sm px-4 px-lg-5">
+        <h1>Crear Partida</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button class="btn btn-success mt-2">Crear Partida</button>
+        </form>
+    </div>
+</section>
 
 
 <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %} " />
