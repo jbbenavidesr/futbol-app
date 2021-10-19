@@ -37,7 +37,10 @@ class Solicitud(models.Model):
     usuario = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
-        related_name='solicitudes'
+        related_name='solicitudes',
     )
 
     is_accepted = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ('partida', 'usuario',)

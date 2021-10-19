@@ -18,7 +18,9 @@
                 </div>
                 <p class="lead">{{ cancha.mensaje }}</p>
                 <div class="d-flex">
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">Solicitar Unirse</button>
+                    {% if not solicitado %}
+                    <a class="btn btn-outline-dark flex-shrink-0" href='{% url 'crear_solicitud' partida.pk %}'>Solicitar Unirse</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-6 card p-3">
