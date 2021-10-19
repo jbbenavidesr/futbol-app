@@ -40,7 +40,7 @@ class Solicitud(models.Model):
         related_name='solicitudes',
     )
 
-    is_accepted = models.BooleanField(default=False)
+    is_accepted = models.BooleanField(blank=True, null=True)
 
     class Meta:
         unique_together = ('partida', 'usuario',)

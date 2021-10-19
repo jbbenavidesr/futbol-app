@@ -18,7 +18,7 @@
                 </div>
                 <p class="lead">{{ cancha.mensaje }}</p>
                 <div class="d-flex">
-                    {% if not solicitado %}
+                    {% if not solicitado and partida.creado_por != user %}
                     <a class="btn btn-outline-dark flex-shrink-0" href='{% url 'crear_solicitud' partida.pk %}'>Solicitar Unirse</a>
                     {% endif %}
                 </div>
@@ -28,10 +28,22 @@
                 <ul class="list-unstyled ">
                     {% for solicitud in partida.solicitudes.all %}
                     <li class="">
-                        <article class="card">
+                        <article class="card mb-4">
                             <header class="card-header">
                                 <h3>{{ solicitud.usuario }}</h3>
                             </header>
+                            {% if partida.creado_por == user %}
+                            <div class="p-2 d-grid gap-2 d-md-flex justify-content-md-start">
+                                {% if solicitud.is_accepted == True %}
+                                <p class="fs-3">Acceptado</p>
+                                {% elif solicitud.is_accepted == False %}
+                                <p class="fs-3">Rechazado</p>
+                                {% else %}
+                                <a href="{% url 'accept_solicitud' solicitud.pk %}" class="btn btn-primary btn-lg px-4 me-md-2">Aceptar</a>
+                                <a href="{% url 'reject_solicitud' solicitud.pk %}" class="btn btn-outline-danger btn-lg px-4">Rechazar</a>
+                                {% endif %}
+                            </div>
+                            {% endif %}
                         </article>
                     </li>
                     {% endfor %}

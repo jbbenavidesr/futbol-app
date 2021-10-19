@@ -11,10 +11,11 @@ from .models import Partida, Solicitud
 from .forms import PartidaCreateForm, PartidaEnCanchaCreateForm
 
 
-class PartidaDetailView(DetailView):
+class PartidaDetailView(LoginRequiredMixin, DetailView):
     model = Partida
     template_name = "partidas/partida_detail.html"
     context_object_name = "partida"
+    login_url = 'login'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -64,3 +65,21 @@ def solicitud_create_view(request, partida_id):
     sol = Solicitud.objects.create(partida=partida, usuario=user)
 
     return redirect(partida)
+
+
+@login_required
+def solicitud_accept_view(request, pk):
+    sol = Solicitud.objects.get(pk=pk)
+    sol.is_accepted = True
+    sol.save()
+
+    return redirect(sol.partida)
+
+
+@login_required
+def solicitud_reject_view(request, pk):
+    sol = Solicitud.objects.get(pk=pk)
+    sol.is_accepted = False
+    sol.save()
+
+    return redirect(sol.partida)
